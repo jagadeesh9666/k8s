@@ -15,3 +15,7 @@ spec:
           protocol: TCP
     - name: logagent
       image: ubuntu
+      args:
+        - sleep 
+        - 1d
+
