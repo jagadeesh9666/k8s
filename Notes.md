@@ -16,11 +16,10 @@
 * selectors are of two types
     * Equality Based Selectors (Equality- or inequality-based requirements allow filtering by label keys and values.)
        * Equility based  `kubectl get pods -l <key>=<value>`
-
-![preview](./Images/k4.png)
-
-   * Inequility based `kubectl get pods -l <key>!=<value>`
+       * Inequility based `kubectl get pods -l <key>!=<value>`
        
+![preview](./Images/k4.png)
+     
 ![preview](./Images/k5.png)
     
 * Set based selectors`kubectl get pods -l '<key> in (<value>'`
