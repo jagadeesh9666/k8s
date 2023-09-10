@@ -10,23 +10,25 @@
 * [Refer Here](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) for official docs on labels
 * Selectors in k8s help in querying objects using labels
 * [Refer Here](https://github.com/jagadeesh9666/k8s/commit/5e9973ee223754f52857f4aff58e6240a690477b#diff-d1590d82e06f13a05dc9b42f83585ac90aea08e24debd9ea81f2bb7d3481d877) for the code with labels
+
 ![preview](./Images/k3.png)
 
 * selectors are of two types
     * Equality Based Selectors (Equality- or inequality-based requirements allow filtering by label keys and values.)
        * Equility based  `kubectl get pods -l <key>=<value>`
+       ![preview](./Images/k4.png)
 
-![preview](./Images/k4.png)
-       * Inequility based ` kubectl get pods -l <key>!=<value>`
-
-![preview](./Images/k5.png)
-    * Set based selectors`kubectl get pods -l '<key> in (<value>'`
+      * Inequility based ` kubectl get pods -l <key>!=<value>`
+       ![preview](./Images/k5.png)
+    
+* Set based selectors`kubectl get pods -l '<key> in (<value>'`
 
 ![preview](./Images/k6.png)
 
 ### Interacting with containers
 * In docker docker container exec -it or docker container exec
 * in k8s we have kubectl exec
+
 ![preview](./Images/k7.png)
 
 * Interactive ` kubectl exec <pod name> -it -c <container name> -- /bin/sh `
