@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: limit-resource
+  labels: 
+    type: Pod
+    author: jagadeesh
+    purpose: resource-limit
+spec:
+  containers:
+    - name: limitnginx
+      image: nginx
+      resources:
+        requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
