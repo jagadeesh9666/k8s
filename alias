@@ -1,1 +1,4 @@
 alias kp='kubectl get pods'
+alias kn='kubectl get nodes'
+alias ka='kubectl apply -f '
+alias kd='kubectl delete -f '
