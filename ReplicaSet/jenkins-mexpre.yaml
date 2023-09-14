@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: replicaset
+  labels: 
+    app: jenkins
+    type: rs 
+spec: 
+  minReadySeconds: 3
+  replicas: 4
+  selector: 
+    matchExpressions:
+      - key: type
+        operator: In # this means atleast one value should match with key
+        values:
+          - jenkins
+          - rs
+      - key: release
+        operator: Exists # here the key name should exists
+  template: 
+    metadata: 
+      name: jenkins-rs
+      labels:
+        app: jenkins
+        release: v1.1
+        type: rs
+    spec: 
+      containers: 
+        - name: jenkins
+          image: jenkins/jenkins
+          ports:
+          - containerPort: 8080
+            protocol: TCP
