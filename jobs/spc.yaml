@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: spc-job
+  labels:
+    app: spc
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      containers:
+      - name: spc
+        image: jagadeeshmurru/spc:1
+        command: ["sleep", "1d"]
+      restartPolicy: OnFailure
