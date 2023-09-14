@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: spc-cornjob
+  labels:
+    app: spc
+spec:
+  schedule: '* * * * *'    
+  jobTemplate:
+    metadata:
+      labels:
+        purpose: jobdemo
+    spec:
+      backoffLimit: 2
+      template:
+        spec:
+          containers:
+          - name: spc
+            image: jagadeeshmurru/spc:1
+            command: ["sleep", "1d"]
+          restartPolicy: OnFailure
