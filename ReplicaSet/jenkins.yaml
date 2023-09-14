@@ -17,6 +17,7 @@ spec:
       labels:
         app: jenkins
         release: v1.1
+        type: rs
     spec: 
       initContainers: 
         - name: nginx1
