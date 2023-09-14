@@ -19,12 +19,6 @@ spec:
         release: v1.1
         type: rs
     spec: 
-      initContainers: 
-        - name: nginx1
-          image: nginx
-          ports: 
-            - containerPort: 80
-              protocol: TCP
       containers: 
         - name: jenkins
           image: jenkins/jenkins
