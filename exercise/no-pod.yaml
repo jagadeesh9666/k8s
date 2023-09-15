@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nop-demo
+  labels:
+    name: nop
+  namespace: dev
+spec:
+  containers:
+  - name: myapp
+    image: jagadeeshmurru/nop:1
+    env: 
+      - name: purpose
+        value: learning
+    ports:
+      - containerPort: 5000
+        hostPort: 5000
+        protocol: TCP
+  restartPolicy: OnFailure

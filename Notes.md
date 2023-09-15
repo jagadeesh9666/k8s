@@ -18,10 +18,10 @@
        - Equility based  `kubectl get pods -l <key>=<value>`
        - Inequility based `kubectl get pods -l <key>!=<value>`
 
-![preview](./Images/k4.png)
+       ![preview](./Images/k4.png)
        
      
-![preview](./Images/k5.png)
+       ![preview](./Images/k5.png)
     
 * Set based selectors`kubectl get pods -l '<key> in (<value>'`
 
@@ -63,4 +63,93 @@
 * Limits in Resoruce Restrictions mean maximum size that will be allocated (upper bounds/limits) and request are lower limits
 [Refer Here](https://github.com/jagadeesh9666/k8s/commit/1dafa628703f5a79788c29b11a7d0c46d2d374ad) for the changes
 
+### Controllers
+* Pod tries to keep containers running, but for us we need to keep Pods running according to some state, Lets understand first two categories
+    * Replicas:
+       - Here we have two resources ReplicationController, ReplicaSet
+       - Here our desired state (spec) will be
+          - number of replicas
+          - pod spec
+          - label selector
+       - These objects try maintain the desired
+    * Jobs:
+       - These will run the Pods which have finite execution time period
+       - Here we have two resources
+           - Job
+           - CronJob
+### ReplicaSet
+* This Resource is responsible for maintaing the desired state of number of replicase of pod .
+* [Refer Here](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/) for dockments
 
+### Activity:
+* Create a replica set with 3 replicas of jenkins/jenkins
+* The label in selector should match with label in template , if not the pods will not get created.
+![preview](./Images/k12.png)
+* [Refer Here](https://github.com/jagadeesh9666/k8s/commit/00dcb36db964fdf161efc1596452f8a274ff582c?diff=split) for manifest file
+![preview](./Images/k13.png)
+![preview](./Images/k14.png)
+* matchlabels is a equility based
+* Now delete one pod and observe , ther will be new pod created to maintain desired number of replicas
+![preview](./Images/k15.png) 
+* Lets try set based selectors [Refer Here](https://github.com/jagadeesh9666/k8s/commit/cdbe8eb187385d7a934d2fc21fb634054abe43b8) for the changes
+* Exercise: Write a Replication controller for creating 3 spc pods
+[Refer Here](https://github.com/jagadeesh9666/k8s/commit/40f891f718a15b9c6fb8185464a350d187d7705f) for code changes.
+
+### Jobs and Cron Jobs
+
+* [Refer Here](https://kubernetes.io/docs/concepts/workloads/controllers/job/) for Offical jobs documentation and [Refer Here](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/) for Official CronJob Documentation
+* job will not get completed until the created pod is deleted 
+* lets create a job which creates a container for 10 seconds
+* [Refer Here](https://github.com/jagadeesh9666/k8s/commit/09b797d529dcae88db78dfeac8ae30fb9518c45f) for the changes
+ ![preview](./Images/k16.png)
+
+* Lets write a Cron Job which runs spc pod with command 1d for every mins
+* cornjob creates a new pod for specified time contineously.
+* [Refer Here](https://github.com/jagadeesh9666/k8s/commit/d80712975b5817d4cc643b2ac14f209cf33951d2) for the changes
+ ![preview](./Images/k17.png)
+
+### Namespace
+* Namespace in k8s is a logical space or logical cluster in which resources will be created
+* Any resource which has a value of Namespace = true belongs in a namespace and with Namespace=false is shared across namespaces.
+* [Refer Here](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) for official docs
+
+### Service in K8s
+* Every Pod when created gives a unique ip address and Name
+* When Pods are scaled
+* Lets create a replicaset with 3 nginx pods with label app:nginx
+```
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-rs
+  labels:
+    app: nginx
+    purpose: svcdemo
+spec:
+  replicas: 3
+  minReadySeconds: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginxc
+          image: nginx:1.25
+          ports:
+            - containerPort: 80
+              protocol: TCP
+```
+* We need to access nginx with in cluster, but pod ips are not reliable, so as shown in the below image, lets create a k8s service resource which gives a consistent ip and name to access all the pods matching labels (equality based selection)
+![preview](./Images/k18.png)
+* service in k8s is of 4 types
+  * Cluster IP
+  * None
+  * External
+  * LoadBalancer
+* Lets create nginx rs and and service and view endpoints. As discussed in the class when pods get update the endpoints are reflected. Service will forward the requests to endpoints
+* [Refer Here](https://github.com/jagadeesh9666/k8s/commit/6e96dfedbd8f8963237a24b503a64e15a71ebd62) for the code

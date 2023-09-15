@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata: 
-  name: replicaset
+  name: matchexpressions
   labels: 
     app: jenkins
     type: rs 
@@ -22,7 +22,7 @@ spec:
       name: jenkins-rs
       labels:
         app: jenkins
-        release: v1.1
+        release: v1
         type: rs
     spec: 
       containers: 
