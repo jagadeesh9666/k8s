@@ -154,4 +154,33 @@ spec:
 * Lets create nginx rs and and service and view endpoints. As discussed in the class when pods get update the endpoints are reflected. Service will forward the requests to endpoints
 * [Refer Here](https://github.com/jagadeesh9666/k8s/commit/6e96dfedbd8f8963237a24b503a64e15a71ebd62) for the code
 
-###
+### Managed Kubernetes or Kubernetes as a Service
+* Managed Kuberenetes (Kubernetes as a Service) is the offerings from various cloud providers.
+* In these Control-Plane is managed by Cloud Service Providers and they charge you hourly for that
+* For worker nodes, storage and other resources charges are as usual.
+* Popular Kuberentes offerings
+* AKS (Azure Kubernetes Services)
+* EKS (Elastic Kuberentes Services)
+* GKE (Google Kubernetes Engine)
+
+* K8s as a service basically means the master nodes will be managed by cloud provider
+
+### Elastic Kubernetes Service
+* This is managed service from AWS
+* EKS is easily created from a tool called as eksctl
+* Install aws cli and configure authentication for aws iam user
+* Lets create a config file `eks-cluster.yaml`
+```
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: jaeks-cluster
+  region: ap-south-1
+
+nodeGroups:
+  - name: ng-1
+    instanceType: t2.medium
+    desiredCapacity: 2
+```
+* Now create the cluster by executing `eksctl create cluster -f eks-cluster.yaml`
