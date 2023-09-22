@@ -153,3 +153,5 @@ spec:
   * LoadBalancer
 * Lets create nginx rs and and service and view endpoints. As discussed in the class when pods get update the endpoints are reflected. Service will forward the requests to endpoints
 * [Refer Here](https://github.com/jagadeesh9666/k8s/commit/6e96dfedbd8f8963237a24b503a64e15a71ebd62) for the code
+
+###

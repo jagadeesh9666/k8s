@@ -11,5 +11,5 @@ spec:
       containers:
       - name: spc
         image: jagadeeshmurru/spc:1
-        command: ["sleep", "1d"]
+        command: ["sleep", "10s"]
       restartPolicy: OnFailure
