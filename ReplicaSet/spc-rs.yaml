@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: spc-rs
+  namespace: ja
+  labels:
+    app: spc
+    purpose: demo
+spec: 
+  minReadySeconds: 3
+  replicas: 2
+  selector: 
+    matchLabels: 
+      app: spc
+  template: 
+    metadata: 
+      name: spc-rs
+      namespace: ja
+      labels:
+        app: spc
+        purpose: demo 
+    spec: 
+      containers: 
+        - name: spc-cont
+          image: jagadeeshmurru/nop:1
+          ports: 
+          - containerPort: 8080
+          env: 
+            - name: app
+              value: spc

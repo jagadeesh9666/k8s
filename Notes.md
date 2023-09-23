@@ -169,6 +169,7 @@ spec:
 * This is managed service from AWS
 * EKS is easily created from a tool called as eksctl
 * Install aws cli and configure authentication for aws iam user
+* [Refer Here](https://eksctl.io/) for yaml file for eks cluster
 * Lets create a config file `eks-cluster.yaml`
 ```
 apiVersion: eksctl.io/v1alpha5
@@ -184,3 +185,25 @@ nodeGroups:
     desiredCapacity: 2
 ```
 * Now create the cluster by executing `eksctl create cluster -f eks-cluster.yaml`
+![preview](./Images/k19.png)
+
+### Exposing Applications running in cluster to externally as well as internally when scaled
+* Every pod gets a unique ip and name.
+*Connecting from one pod to other on the basis of name/ip might not be a good idea as pods are controlled by replicasets or other controllers
+* K8s has a service which helps us in connecting to pods with similar behaviour but by using labels.
+* Each service gets a ip address and this is virtual ip which helps in forwarding traffic to one of the pod based on labels. This ip is called as cluster ip
+* Services can be exposed to external world
+![Preview](./Images/k20.png)
+* Service is similar to layer 4 load balancer
+
+### Internal Communication using k8s service (cluster ip )
+* Consider the following
+      * We have an alpine pod which needs to consume nginx
+      * but nginx is a replica set and there can be n replicas
+* Lets create a spc-rs
+* Lets create a spc-svc
+* Lets create a alpine pod and login into it
+[Refer Here](./Images/k21.png)
+* ping nginx-svc by its ip address and try accessing the web page using curl
+
+[Refer Here](https://github.com/jagadeesh9666/k8s/commit/1b4ab60a23206d8dcaa75f24f2e9a67e13c78aeb) for internal communication manifests

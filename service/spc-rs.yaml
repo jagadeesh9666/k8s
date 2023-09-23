@@ -2,24 +2,24 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: nginx-rs
+  name: spc-rs
   labels:
-    app: nginx
+    app: spc
     purpose: svcdemo
 spec:
-  replicas: 2
+  replicas: 3
   minReadySeconds: 1
   selector:
     matchLabels:
-      app: nginx
+      app: spc
   template:
     metadata:
       labels:
-        app: nginx
+        app: spc
     spec:
       containers:
-        - name: nginxc
-          image: nginx:1.25
+        - name: spc
+          image: jagadeeshmurru/spc:1
           ports:
-            - containerPort: 80
+            - containerPort: 8080
               protocol: TCP

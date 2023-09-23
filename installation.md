@@ -1,6 +1,6 @@
 ### Note : Below command's should be executed on all nodes
 
-* to install kuberneties we required kubeadm, kubectl, kubelet to be present in all master and worker nodes.
+* To install kuberneties we required kubeadm, kubectl, kubelet to be present in all master and worker nodes.
 * Run the below script to install docker on ubuntu user
 * Docker should be installed on master and worker nodes. (below mentioned all steps should be done on all machines until specified to do something on master node)
 
@@ -47,9 +47,9 @@ kubeadm init --pod-network-cidr "10.244.0.0/16" --cri-socket "unix:///var/run/cr
 
 * On the master node to run kubectl as regular user and execute the following
 ```
-  mkdir -p $HOME/.kube
-  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ```
 ### Note: now on worker nodes

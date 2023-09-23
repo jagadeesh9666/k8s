@@ -2,13 +2,15 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: alpine-pod
+  name: jenkins
   labels:
     app: alpine
 spec:
   containers:
-    - name: alpine
-      image: nginx:1.25
+    - name: jenkins
+      image: jenkins/jenkins
+      ports: 
+        - containerPort: 8080
       args:
         - sleep 
         - 1d

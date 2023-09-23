@@ -2,9 +2,9 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: spc-rs
+  name: nginx-rs
   labels:
-    app: spc
+    app: nginx
     layer: web
     version: "1.23"
 spec:
@@ -12,16 +12,16 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: spc
+      app: nginx
   template:
     metadata:
-      name: spc
+      name: nginx
       labels:
-        app: spc
+        app: nginx
         version: "1.23"
     spec:
       containers:
-        - name: spc
-          image: jagadeeshmurru/spc:1
+        - name: nginx
+          image: nginx:1.23
           ports:
-            - containerPort: 8080
+            - containerPort: 80
