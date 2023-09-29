@@ -243,4 +243,20 @@ nodeGroups:
 
 ### Annotations
 * [Refer Here](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) for official docs
-* 
+* Annotations are provided to know the change cause of a pod.
+
+### DaemonSet
+* DaemonSet is a controller which creates pod on every/selected nodes in k8s cluster
+* Use cases:
+   * log collectors
+   * agents etc
+[Refer Here](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) for official documents
+* A DaemonSet ensures that all (or some) Nodes run a copy of a Pod. As nodes are added to the cluster, Pods are added to them
+* Some typical uses of a DaemonSet are:
+      * running a cluster storage daemon on every node
+      * running a logs collection daemon on every node
+      * running a node monitoring daemon on every node
+[Refer Here](https://github.com/jagadeesh9666/k8s/commit/8f21d3d0ee44e56709dd7bab7911f0a3935edc52) for manifest files
+
+### Node Selectors
+* [Refer Here]() for manifest files

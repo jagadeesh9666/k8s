@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: nginx-deploy
   annotations: 
-    cause: "changed to httpd"
+    kubernetes.io/change-cause: "update to phpmyadmin"
 spec:
   minReadySeconds: 1
   replicas: 3
