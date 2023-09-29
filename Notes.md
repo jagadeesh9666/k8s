@@ -205,5 +205,39 @@ nodeGroups:
 * Lets create a alpine pod and login into it
 [Refer Here](./Images/k21.png)
 * ping nginx-svc by its ip address and try accessing the web page using curl
+[Refer Here](https://github.com/jagadeesh9666/k8s/tree/master/internal-cluster-ip.yml) for internal communication manifests
 
-[Refer Here](https://github.com/jagadeesh9666/k8s/commit/1b4ab60a23206d8dcaa75f24f2e9a67e13c78aeb) for internal communication manifests
+### External Communication using k8s service
+* Some user external to k8s cluster wants to access nginx
+[Refer Here](./Images/k22.png)
+* Kubernetes has the service publishing types [Refer Here](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
+   * Cluster ip: internal communication
+   * Node Port: k8s will expose the application on a port on every node in k8s cluster.
+   [Refer Here](./Images/k23.png)
+   * LoadBalancer: This is generally used with managed k8s clusters
+   [Refer Here](./Images/k24.png)
+   * ExternalName: Creates a CNAME record that can be used in your DNS Servers
+
+### Health Checks/Probes for containers in k8s Pods
+* [Refer Here](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) for official documents
+* K8s supports 3 kinds of checks
+   * liveness probe: if this check fails kuberenetes will restart the container.
+   * readiness probe: if this check fails the pod will be removed from service (pod will not get requests from service)
+   * startup probe: This checks for startup and until startup is ok, the other checks will be paused.
+* [Refer Here](https://github.com/jagadeesh9666/k8s/commit/44bccbbef68b0e980d6d1c5c143161fa089c0940) for manifest file
+
+### Run Pods with specific Resources (CPU/Memory)
+* [Refer Here](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for the official docs on Resource Limits
+* [Refer Here](https://github.com/jagadeesh9666/k8s/commit/52391d68ece06149666b495577664d9b2913532f) for manifest file
+
+### Container Types in Pods
+* There are three types of containers
+    * containers
+    * initcontainers : these containers are created before actual containers create.
+    * ephemeral containers : we use ephemeral containers to inspect services rather than to build applications.
+### Deployment
+* Deployment is a k8s object which can help in rolling out and rolling back updates
+* Deployment controls replica set and replica set controls pods
+![preview](./Images/k25.png)
+[Refer Here](https://github.com/jagadeesh9666/k8s/commit/4ea2cb3c2d9e0323811d79c4358d8fcd6e63357d) for manifest files
+
