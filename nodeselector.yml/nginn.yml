@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nginx-ds
+  annotations:
+    kubernetes.io/change-cause: "update to latest"
+spec:
+  minReadySeconds: 5
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      name: nginx
+      labels:
+        app: nginx
+    spec:
+      nodeSelector: 
+        color: yellow
+      containers:
+        - name: nginx
+          image: nginx

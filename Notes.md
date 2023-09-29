@@ -259,4 +259,32 @@ nodeGroups:
 [Refer Here](https://github.com/jagadeesh9666/k8s/commit/8f21d3d0ee44e56709dd7bab7911f0a3935edc52) for manifest files
 
 ### Node Selectors
-* [Refer Here]() for manifest files
+* [Refer Here](https://github.com/jagadeesh9666/k8s/commit/0a5e971daa49098e93316afb77722c180c010fdf#diff-02e376f35caba87bf8474cbb7b5ba3edbfc0aadab038032109b8047d8d6fdea0) for manifest files
+* node selector creates pod on specified node.
+![Preview](./Images/k26.png)
+* lets attach labels to the node
+`kubectl label nodes <name of node> <key>=<value>`
+![preview](./Images/k27.png)
+
+### Headless Service
+* Headless service will not have cluster ip
+* headless service spec
+* Headless service returns the ips of the pods returned by selector.
+* This is used in stateful sets
+```
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+spec:
+  selector:
+    app: nginx
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - name: nginx-svc
+      port: 80
+      targetPort: 80
+      protocol: TCP
+```
