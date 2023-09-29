@@ -6,6 +6,10 @@ spec:
   selector:
     matchLabels:
       app: jenkins
+  strategy: 
+    rollingUpdate: 
+      maxSurge: 50%
+      maxUnavailable: 25%
   template:
     metadata:
       labels:

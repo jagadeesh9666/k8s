@@ -8,7 +8,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: nginx
+    app: jenkins
   ports:
     - targetPort: 8080
       port: 8080
