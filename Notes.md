@@ -241,3 +241,6 @@ nodeGroups:
 ![preview](./Images/k25.png)
 [Refer Here](https://github.com/jagadeesh9666/k8s/commit/4ea2cb3c2d9e0323811d79c4358d8fcd6e63357d) for manifest files
 
+### Annotations
+* [Refer Here](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) for official docs
+* 
