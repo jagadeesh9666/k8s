@@ -7,11 +7,13 @@ metadata:
 spec:
   containers:
   - name: mysql
-    image: mysql:8.0
+    image: mysql:8
+    ports:
+        - containerPort: 3306
     volumeMounts: 
       - name: ja
         mountPath: /var/lib/mysql
   volumes: 
    - name: ja
-   - emptyDir: 
-       sizeLimit: 2000mi
+     emptyDir: 
+       sizeLimit: 2000Mi
