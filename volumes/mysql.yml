@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql
+  labels:
+    name: mysql
+spec:
+  containers:
+  - name: mysql
+    image: mysql:8.0
+    volumeMounts: 
+      - name: ja
+        mountPath: /var/lib/mysql
+  volumes: 
+   - name: ja
+   - emptyDir: 
+       sizeLimit: 2000mi
