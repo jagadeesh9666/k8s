@@ -10,6 +10,6 @@ spec:
     spec:
       containers:
       - name: spc
-        image: jagadeeshmurru/spc:1
+        image: nginx
         command: ["sleep", "10s"]
       restartPolicy: OnFailure

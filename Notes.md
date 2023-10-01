@@ -171,6 +171,7 @@ spec:
 * Install aws cli and configure authentication for aws iam user
 * [Refer Here](https://eksctl.io/) for yaml file for eks cluster
 * Lets create a config file `eks-cluster.yaml`
+
 ```
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
@@ -267,10 +268,10 @@ nodeGroups:
 ![preview](./Images/k27.png)
 
 ### Headless Service
-* Headless service will not have cluster ip
-* headless service spec
+* Headless service will not have cluster ip.
 * Headless service returns the ips of the pods returned by selector.
 * This is used in stateful sets
+* In head less service it show's only ip's of pods which are connected to that server.
 ```
 ---
 apiVersion: v1
@@ -288,3 +289,70 @@ spec:
       targetPort: 80
       protocol: TCP
 ```
+### Storage Solutions in K8s
+* Stateful applications store data locally. In Containers the data created locally will be lost once you delete it. So to solve this in docker we have used volumes. Volumes have a lifecycle which has no relation to container lifecycle (refer docker containers, image layers, volumes)
+* IN k8s we are running docker containers, k8s is an orchestration solutions.
+* Lets see what are options for storage provisioning in k8s [Refer Here](https://kubernetes.io/docs/concepts/storage/)
+* The most widely used storage types
+* Volumes
+* Persistent Volumes
+  * Storage Classes
+  * Persistent Volume Claims
+
+### Volumes
+* Volumes can be mounted to containers and they have lifetime equivalent to Pods.
+* Types of volumes [Refer Here](https://kubernetes.io/docs/concepts/storage/volumes/#volume-types)
+* The types
+    * storage on cloud
+        * ebs
+        * azure disk
+        * efs
+        * azure file
+        * gcs
+    * empty dir
+    * hostPath
+* created a volume and attached to a path in container
+[Refer Here](https://github.com/jagadeesh9666/k8s/commit/c6dc5345669320d88d61c9ee0a8a7e3a6f9be0db) for manifest file 
+
+### Persistent Volumes
+* These volumes will have a lifetime different than Pod i.e. they exist even after pod is dead.
+* Types of Persistance volumes
+   * csi - Container Storage Interface (CSI)
+   * fc - Fibre Channel (FC) storage
+   * hostPath - HostPath volume (for single node testing only; WILL NOT WORK in a multi-node cluster; consider using local volume instead)
+   * iscsi - iSCSI (SCSI over IP) storage
+   * local - local storage devices mounted on nodes.
+   * nfs - Network File System (NFS) storage
+
+### StatefulSets
+* Statefulset is like deployment with replicas. But each pod gets its own volume.
+* Stateful Set is for stateful applications
+* ![preview](./Images/k28.png)
+* When we create replicas in Stateful Set we get predictable names
+* We can access individual pod, by creating headless service and by using ...svc.cluster.local
+* [Refer Here](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) for official docs
+
+### Namespace
+* Namespace is logical/virtual cluster within k8s cluster
+* K8s resources will be of two categories by scope
+    * Namespace resources: They belong to a namespace.
+    * luster resources: They belong to a cluster
+* Creating namespace: `kubctl create ns <name>`
+
+### Config Map
+* [Refer Here](https://kubernetes.io/docs/concepts/configuration/configmap/) for official docs
+* Lets create a dummy config map. [Refer Here](https://github.com/jagadeesh9666/k8s/commit/473052ee1e240e06a8b6a47880f3f9626610be3a) for the changes.
+* Create the config map
+![preview](./Images/k29.png)
+* There are four different ways that you can use a ConfigMap to configure a container inside a Pod:
+   * Inside a container command and args
+   * Environment variables for a container
+   * Add a file in read-only volume, for the application to read
+   * Write code to run inside the Pod that uses the Kubernetes API to read a ConfigMap
+* Load config map data as Environment variables. [Refer Here](https://github.com/jagadeesh9666/k8s/commit/6dfdad373fff78fb8e07277085524e226f182ee8) for pod spec which loads the config map as environmental variables
+![preview](./Images/k30.png)
+
+### Secrets
+* A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in a container image. Using a Secret means that you don't need to include confidential data in your application code.
+* Secrets can be created from kubectl [Refer Here](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/#use-raw-data) and manifest files [Refer Here](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-config-file/#edit-secret)
+* 

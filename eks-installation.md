@@ -1,7 +1,8 @@
 ### create cluster in windows
-* install aws cli  in powershell
+* install aws cli  in powershell `choco install awscli -y`
 * configure aws cli
-* install eksctl in powershell
+* install eksctl in powershell `choco install eksctl -y`
+* install kubernetes cli `choco install kubernetes-cli`
 * ### Elastic Kubernetes Service
 * This is managed service from AWS
 * EKS is easily created from a tool called as eksctl
