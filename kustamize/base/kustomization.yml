@@ -1,0 +1,5 @@
+---
+resources:
+  - deployment.yml
+  - nginx-lbsvc.yml
+  - hpa.yml
