@@ -28,7 +28,7 @@
 ![preview](./Images/k6.png)
 
 ### Interacting with containers
-* In docker docker container exec -it or docker container exec
+* In docker docker container exec -it or docker container exec    
 * in k8s we have kubectl exec
 
 ![preview](./Images/k7.png)
@@ -355,4 +355,25 @@ spec:
 ### Secrets
 * A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in a container image. Using a Secret means that you don't need to include confidential data in your application code.
 * Secrets can be created from kubectl [Refer Here](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/#use-raw-data) and manifest files [Refer Here](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-config-file/#edit-secret)
-* 
+* secret's are same as configmaps , the difference is here we use encripted data .
+* encript the data with base 64 algorithem.
+* by default kubernetes support base 64.
+
+### Helm
+* Helm is a package manager for k8s.
+* In helm we have repositories where charts are defined
+* An helm chart is analogus to package (apt package)
+* install helm [Refer Here](https://helm.sh/docs/intro/install/)
+* Manifests are static in nature, to add reusability and dynamic nature to manifests we have two options
+     * helm:
+         * this uses templated approach
+         * this was present from earlier days of k8s
+     * kustomize:
+         * this uses override approach
+         * this is natively supported in kubectl (recent additions)
+
+### Kustomize
+* [Refer Here](https://github.com/jagadeesh9666/k8s/commit/1804ab45181d76ea36b67d265318aad2384683cb) for manifests
+* [Refer Here](https://kustomize.io/) Kustomize
+* [Refer Here](https://www.vultr.com/docs/how-to-configure-kubernetes-resources-with-kustomize/) for tutorial from vultr to use kustomize
+* [Refer Here](https://github.com/jagadeesh9666/k8s/commit/c9846029965716003781d70921d34750060f47ab) for manifest files
