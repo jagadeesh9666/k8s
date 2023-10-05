@@ -9,3 +9,5 @@ nodeGroups:
   - name: ja-1
     instanceType: t2.large
     desiredCapacity: 1
+    ssh:
+      allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key

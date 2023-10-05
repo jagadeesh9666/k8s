@@ -377,3 +377,28 @@ spec:
 * [Refer Here](https://kustomize.io/) Kustomize
 * [Refer Here](https://www.vultr.com/docs/how-to-configure-kubernetes-resources-with-kustomize/) for tutorial from vultr to use kustomize
 * [Refer Here](https://github.com/jagadeesh9666/k8s/commit/c9846029965716003781d70921d34750060f47ab) for manifest files
+* Below method is using kubectl
+* The folder should be b
+* Go to the folder where it contains kustamization.yaml and other resource files . 
+* Execute the following commands `kubectl kustomize <name of folder>` 
+* `kubectl apply -k <name of folder>`
+![preview](./Images/k31.png)
+![preview](./Images/k32.png)
+
+* we use kustomize for the applications, which are developed by our organizayion.
+* we use helm when we combine our application with external sercice. i.e we use mqsql which is developed by some other and nop is developed by us.
+* network load balancer service is a layer4 which understands only port numbers and ip addr.
+
+### Ingress
+* To understand concept of ingress [Refer Here](https://doc.traefik.io/traefik/getting-started/concepts/)
+* In k8s we have 3 major objects which will help in ingress (layer 7 loadbalancing)
+     * ingressController: This is a third party implementation [Refer Here](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/)
+     * ingress
+     * ingressClass
+* K8s doesnot have controller for ingress.
+* Lets create four simple applicatons [Refer Here](https://github.com/jagadeesh9666/k8s/commit/3eae18eddb745e3570b311b378d2b22cb302cfc4) for changes done
+* Create docker image and push them to registry
+* For this classroom purpose i will be using nginx-ingress-controller [Refer Here](https://www.nginx.com/products/nginx-ingress-controller/)
+![preview](./Images/k33.png)
+* [Refer Here](https://github.com/jagadeesh9666/k8s/commit/908c404f18cbf63059cd3da10c321a31cb9d68f4) for manifest files.
+* 

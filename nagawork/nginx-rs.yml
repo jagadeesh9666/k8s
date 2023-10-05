@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cronjobnaga
+  labels:
+    purpose: cronjob1
+spec:
+  schedule: '*/5 * * * *'
+  jobTemplate:
+    metadata:
+      labels:
+        Purpose: cornjob1
+    spec:
+      backoffLimit: 3
+      template:
+        metadata:
+          labels:
+            app: batch
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: batchdemo
+              image: alpine
+              command:
+                - sleep
+                - 10s
