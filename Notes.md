@@ -401,4 +401,4 @@ spec:
 * For this classroom purpose i will be using nginx-ingress-controller [Refer Here](https://www.nginx.com/products/nginx-ingress-controller/)
 ![preview](./Images/k33.png)
 * [Refer Here](https://github.com/jagadeesh9666/k8s/commit/908c404f18cbf63059cd3da10c321a31cb9d68f4) for manifest files.
-* 
+*  
